@@ -8,8 +8,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class KafkaSender {
 	
-	public static final String KAFKA_BROKER_URL="54.210.125.52:9092";
-	
+	//public static final String KAFKA_BROKER_URL="54.210.125.52:9092";
+	public static final String KAFKA_BROKER_URL="localhost:9092";
 
 	public static void main(String[] args) {
 
