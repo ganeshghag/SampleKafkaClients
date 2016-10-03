@@ -8,6 +8,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class KafkaReceiver {
+	
+	//public static final String KAFKA_ZOOKEEPER_URL="localhost:2181";
 
 	public static void main(String[] args) {
 		Properties props = new Properties();
@@ -26,8 +28,8 @@ public class KafkaReceiver {
 		System.out.println("after subscribe");
 		
 		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(100);
-			System.out.println("after poll");
+			ConsumerRecords<String, String> records = consumer.poll(1000);
+			System.out.println("after poll count="+records.count());
 			for (ConsumerRecord<String, String> record : records)
 				System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value());
 		}
