@@ -1,11 +1,13 @@
 package com.ghag.rnd.kafka.SampleKafkaClients;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 
 public class KafkaReceiver {
 	
@@ -25,7 +27,10 @@ public class KafkaReceiver {
 		System.out.println("after new consumer");
 		
 		consumer.subscribe(Arrays.asList("test"));
-		System.out.println("after subscribe");
+		
+		ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
+		list.add(new TopicPartition("test", 0));
+		consumer.seekToBeginning(list);
 		
 		while (true) {
 			ConsumerRecords<String, String> records = consumer.poll(1000);
