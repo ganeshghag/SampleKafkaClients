@@ -28,7 +28,7 @@ public class KafkaSender {
 		System.out.println("after new producer");
 		for (int i = 0; i < 5; i++){
 			System.out.println("before send"+i);
-			producer.send(new ProducerRecord<String, String>("test", Integer.toString(i), Integer.toString(i)));
+			producer.send(new ProducerRecord<String, String>("test", 0 ,Integer.toString(i), Integer.toString(i)));
 			System.out.println("after send"+i);
 		}
 

@@ -18,7 +18,7 @@ public class KafkaReceiver {
 		props.put("bootstrap.servers", KafkaSender.KAFKA_BROKER_URL);
 		props.put("group.id", "test");
 		props.put("enable.auto.commit", "true");
-		props.put("auto.offset.reset", "smallest");
+		//props.put("auto.offset.reset", "smallest");
 		props.put("auto.commit.interval.ms", "1000");
 		props.put("session.timeout.ms", "30000");
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -29,9 +29,9 @@ public class KafkaReceiver {
 		
 		consumer.subscribe(Arrays.asList("test"));
 		
-		//ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
-		//list.add(new TopicPartition("test", 0));
-		//consumer.seekToBeginning(list);
+		ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
+		list.add(new TopicPartition("test", 0));
+		consumer.seekToBeginning(list);
 
 		while (true) {
 			ConsumerRecords<String, String> records = consumer.poll(1000);
