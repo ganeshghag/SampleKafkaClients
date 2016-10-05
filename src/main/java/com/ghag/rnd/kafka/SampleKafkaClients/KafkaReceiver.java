@@ -27,8 +27,8 @@ public class KafkaReceiver {
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
 		System.out.println("after new consumer");
 		
-		consumer.subscribe(Arrays.asList("test"));
-		System.out.println("size="+consumer.assignment().size());
+		//consumer.subscribe(Arrays.asList("test"));
+		//System.out.println("size="+consumer.assignment().size());
 		
 		ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
 		list.add(new TopicPartition("test", 0));		
