@@ -20,7 +20,7 @@ public class KafkaReceiver {
 		props.put("bootstrap.servers", KafkaSender.KAFKA_BROKER_URL);
 		props.put("group.id", "test");
 		props.put("enable.auto.commit", "true");
-		props.put("auto.offset.reset", "earliest");
+		//props.put("auto.offset.reset", "earliest");
 		props.put("auto.commit.interval.ms", "1000");
 		props.put("session.timeout.ms", "30000");
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -50,7 +50,7 @@ public class KafkaReceiver {
 		//partition based subscribe
 		ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
 		list.add(new TopicPartition("test", 0));		
-		
+		consumer.assign(list);
 		System.out.println("size="+consumer.assignment().size());
 
 		//programmatic "auto.offset.reset", "earliest"
