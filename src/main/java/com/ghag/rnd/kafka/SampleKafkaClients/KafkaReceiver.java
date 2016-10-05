@@ -28,10 +28,14 @@ public class KafkaReceiver {
 		System.out.println("after new consumer");
 		
 		consumer.subscribe(Arrays.asList("test"));
+		System.out.println("size="+consumer.assignment().size());
 		
-		//ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
-		//list.add(new TopicPartition("test", 0));
-		//consumer.seekToBeginning(list);
+		ArrayList<TopicPartition> list = new ArrayList<TopicPartition>();
+		list.add(new TopicPartition("test", 0));		
+		consumer.assign(list);
+		System.out.println("size="+consumer.assignment().size());
+
+		consumer.seekToBeginning(list);
 
 		while (true) {
 			ConsumerRecords<String, String> records = consumer.poll(1000);
