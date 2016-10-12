@@ -9,6 +9,13 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 
+/*
+ * 
+ *  Tutorial URL:
+ *  http://www.mkyong.com/mongodb/java-mongodb-hello-world-example
+ * 
+ * 
+ */
 public class SampleMongoClient {
 
 	public static void main(String[] args) {
@@ -19,9 +26,8 @@ public class SampleMongoClient {
 		DB db = mongo.getDB("test");
 		System.out.println("collections="+db.getCollectionNames());
 		
+		getRows(db,"users","ganesh ghag.*/");
 		saveRecord(db, "users", "ganesh ghag-"+new Date().getTime());
-		
-		
 		getRows(db,"users","ganesh ghag.*/");
 
 	}
@@ -34,6 +40,8 @@ public class SampleMongoClient {
 		document.put("age", 43);
 		document.put("createdDate", new Date());
 		table.insert(document);
+		
+		System.out.println("saved new record SUCCESSFULLY!!");
 	}
 	
 	public static void getRows(DB db, String collectionName, String username){
@@ -45,9 +53,9 @@ public class SampleMongoClient {
 
 		DBCursor cursor = table.find(searchQuery);
 	
-		while (cursor.hasNext()) {
-			System.out.println(cursor.next());
-		}
+//		while (cursor.hasNext()) {
+//			System.out.println(cursor.next());
+//		}
 		System.out.println("row count="+cursor.size());
 		
 		
